@@ -1,4 +1,5 @@
 var IOT = angular.module('IOT', []);
+// var socket = io();
 
 
 IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
