@@ -1,6 +1,3 @@
-var socket = io();
-
-
 var IOT = angular.module('IOT', []);
 
 

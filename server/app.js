@@ -4,6 +4,7 @@ var socketio = require('socket.io');
 var path = require('path');
 var router = express.Router();
 var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
 
 
 app.use(bodyParser.json());
