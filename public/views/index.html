@@ -12,6 +12,7 @@
 <!-- Scripts -->
 <script type="text/javascript" src="vendors/angular.min.js"></script>
 <script type="text/javascript" src="scripts/clientApp.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 
   </head>
 
@@ -22,16 +23,17 @@
 
     Right now, outside it is {{weather}} outside, and feels like {{feelsLikeF}} ° F.
 <br><br>
-      {{lastUpdated}}
+      {{lastUpdated}} -- {{currentObservations.display_location.city}}
 
       <br><br>
 
       <h2>10 Day Forecast</h2>
 
       <table border = "1px">
-        <tr ng-repeat="item in forecastArray"><td>{{item.conditions}}</td><td >High: {{item.high.fahrenheit}} Low {{item.low.fahrenheit}}</td> <td>{{item.date.weekday}}, {{item.date.monthname}} {{item.date.day}} </tr>
+        <tr ng-repeat="item in forecastArray"><td><b>{{item.date.weekday}}, {{item.date.monthname}} {{item.date.day}}</b></td><td>{{item.conditions}}</td><td >High: {{item.high.fahrenheit}} Low {{item.low.fahrenheit}}</td>  </tr>
       </table>
 
+      <script src="/socket.io/socket.io.js"></script>
 
   </body>
 </html>
