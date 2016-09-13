@@ -27,6 +27,8 @@
 
       <br><br>
 
+      <button ng-click="clickMe()">Click me</button>
+
       <h2>10 Day Forecast</h2>
 
       <table border = "1px">
@@ -36,6 +38,65 @@
       <script src="/socket.io/socket.io.js"></script>
       <script>
         var socket = io();
+
+
+
+
+
+
+
+        var IOT = angular.module('IOT', []);
+
+
+        IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
+          console.log('hello, world!');
+
+
+            $scope.clickMe = function(){
+              var tweet = {user: "Lukas", text: $scope.forecastArray};
+              socket.emit("tweet", tweet);
+            }
+
+
+        $http({
+          method: 'GET',
+          url: 'http://api.wunderground.com/api/ff82541ce72353e5/conditions/q/MN/Minneapolis.json'
+        }).then(function(response){
+          console.log(response.data.current_observation.feelslike_f);
+          $scope.currentObservations = response.data.current_observation;
+          $scope.feelsLikeF = $scope.currentObservations.feelslike_f;
+          $scope.weather = $scope.currentObservations.weather;
+          $scope.lastUpdated = $scope.currentObservations.observation_time;
+          console.log($scope.currentObservations);
+        }).then(function(){
+
+          $http({
+            method: 'GET',
+            url: 'http://api.wunderground.com/api/ff82541ce72353e5/forecast10day/q/MN/Minneapolis.json'
+          }).then(function(response){
+            $scope.forecastArray = response.data.forecast.simpleforecast.forecastday;
+
+            console.log('forecast data', response.data);
+            console.log($scope.forecastArray);
+          });
+
+          });
+
+
+
+        }]);
+
+
+        // socket.on("tweet", function(tweet){
+        //   console.log("tweet from", tweet.user);
+        //   console.log("contents", tweet.text);
+        // })
+
+
+        // socket.on('news', function (data) {
+        //  console.log(data);
+        //  socket.emit('my other event', { my: 'yes' });
+        // });
       </script>
   </body>
 </html>

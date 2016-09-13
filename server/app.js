@@ -24,6 +24,25 @@ app.use('/', base);
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  socket.on("tweet", function(tweet){
+    console.log(tweet);
+  });
+
+  var tweet = {user: "nodesource", text: "Hello, world!"};
+
+  // send tweet every second
+
+
+
+
+
+
+  // socket.emit('news', { hello: 'world' });
+  // socket.on('my other event', function (data) {
+  //   console.log(data);
+  // });
+
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
