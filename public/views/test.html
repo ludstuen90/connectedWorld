@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="IOT">
+  <head>
+    <meta charset="utf-8">
+    <title>Internet of Things!</title>
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="vendors/bootstrap.min.css"></link>
+<link rel="stylesheet" href="assets/sheetrock.css"></link>
+
+
+<!-- Scripts -->
+<script type="text/javascript" src="vendors/angular.min.js"></script>
+<!-- <script type="text/javascript" src="scripts/clientApp.js"></script> -->
+<script src="/socket.io/socket.io.js"></script>
+
+  </head>
+
+
+  <body ng-controller="baseController">
+
+    <h1>Hello!</h1>
+
+    This represents the mobile page
+
+      <button ng-click="clickMe()">Click me</button>
+
+
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+        var socket = io();
+        var IOT = angular.module('IOT', []);
+
+        IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
+          console.log('hello, world!');
+
+          $scope.clickMe = function(){
+            var tweet = {user: "Lukas", text: "Blue Banana"};
+            socket.emit("tweet", tweet);
+          }
+
+          socket.on("tweet", function(tweet){
+            console.log("from server - tweet from", tweet.user);
+            console.log("contents", tweet.text);
+          })
+
+
+
+
+
+
+        }]);
+
+        // socket.on("tweet", function(tweet){
+        //   console.log("tweet from", tweet.user);
+        //   console.log("contents", tweet.text);
+        // })
+
+        // socket.on('news', function (data) {
+        //  console.log(data);
+        //  socket.emit('my other event', { my: 'yes' });
+        // });
+      </script>
+  </body>
+</html>

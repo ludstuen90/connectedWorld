@@ -21,14 +21,18 @@ var base = require('./routes/base');
 
 app.use('/', base);
 
+var tweet = {user: "nodesource", text: "Hello, world!"};
 
 io.on('connection', function(socket){
+
+
   console.log('a user connected');
   socket.on("tweet", function(tweet){
+    socket.emit("tweet", tweet);
+    socket.broadcast.emit("tweet", tweet);
     console.log(tweet);
   });
 
-  var tweet = {user: "nodesource", text: "Hello, world!"};
 
   // send tweet every second
 
