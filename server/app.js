@@ -13,9 +13,6 @@ app.use(bodyParser.json());
 //Static Page
 app.use(express.static('public'));
 
-
-
-
 // Route inclusion
 var base = require('./routes/base');
 

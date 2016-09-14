@@ -8,77 +8,17 @@
 <link rel="stylesheet" href="vendors/bootstrap.min.css"></link>
 <link rel="stylesheet" href="assets/sheetrock.css"></link>
 
-
 <!-- Scripts -->
 <script type="text/javascript" src="vendors/angular.min.js"></script>
-<!-- <script type="text/javascript" src="scripts/clientApp.js"></script> -->
-<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="scripts/clientApp.js"></script>
+<!-- <script type="text/javascript" src="scripts/socket.js"></script> -->
 
   </head>
 
 
   <body ng-controller="baseController">
+      <div ng-include src="viewer"></div>
 
-    <h1>Hello!</h1>
-
-    Right now, outside it is {{weather}} outside, and feels like {{feelsLikeF}} ° F.
-<br><br>
-      {{lastUpdated}} -- {{currentObservations.display_location.city}}
-
-      <br><br>
-
-      <button ng-click="clickMe()">Click me</button>
-
-      <h2>10 Day Forecast</h2>
-
-      <table border = "1px">
-        <tr ng-repeat="item in forecastArray"><td><b>{{item.date.weekday}}, {{item.date.monthname}} {{item.date.day}}</b></td><td>{{item.conditions}}</td><td >High: {{item.high.fahrenheit}} Low {{item.low.fahrenheit}}</td>  </tr>
-      </table>
-
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-        var socket = io();
-        var IOT = angular.module('IOT', []);
-
-        IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
-
-            $scope.clickMe = function(){
-              var tweet = {user: "Lukas", text: "Red Banana"};
-              socket.emit("tweet", tweet);
-            }
-
-        $http({
-          method: 'GET',
-          url: 'http://api.wunderground.com/api/ff82541ce72353e5/conditions/q/MN/Minneapolis.json'
-        }).then(function(response){
-          // console.log(response.data.current_observation.feelslike_f);
-          $scope.currentObservations = response.data.current_observation;
-          $scope.feelsLikeF = $scope.currentObservations.feelslike_f;
-          $scope.weather = $scope.currentObservations.weather;
-          $scope.lastUpdated = $scope.currentObservations.observation_time;
-          // console.log($scope.currentObservations);
-        }).then(function(){
-
-                $http({
-                  method: 'GET',
-                  url: 'http://api.wunderground.com/api/ff82541ce72353e5/forecast10day/q/MN/Minneapolis.json'
-                }).then(function(response){
-                  $scope.forecastArray = response.data.forecast.simpleforecast.forecastday;
-                  // console.log('forecast data', response.data);
-                  // console.log($scope.forecastArray);
-                });
-          });
-        }]);
-
-        socket.on("tweet", function(tweet){
-          console.log("from server - tweet from", tweet.user);
-          console.log("contents", tweet.text);
-        })
-
-        // socket.on('news', function (data) {
-        //  console.log(data);
-        //  socket.emit('my other event', { my: 'yes' });
-        // });
-      </script>
   </body>
 </html>

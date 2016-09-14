@@ -1,0 +1,12 @@
+<h3>Weather Outside</h3>
+
+Right now, outside it is {{weather}} outside, and feels like {{feelsLikeF}} ° F.
+<br><br>
+  <h2>10 Day Forecast</h2>
+
+  <table border = "1px">
+    <tr ng-repeat="item in forecastArray"><td><b>{{item.date.weekday}}, {{item.date.monthname}} {{item.date.day}}</b></td><td>{{item.conditions}}</td><td >High: {{item.high.fahrenheit}} Low {{item.low.fahrenheit}}</td>  </tr>
+  </table>
+
+  <br><br>
+        {{lastUpdated}} -- {{currentObservations.display_location.city}}
