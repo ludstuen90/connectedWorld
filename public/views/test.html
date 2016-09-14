@@ -21,11 +21,16 @@
 
     This represents the mobile page<br>
     {{variable}}
+<br><br>
+
+<br><br>
+<button ng-click="clickMe()">Click me</button>
+<br><br>
+    <img src="images/{{hash}}.jpg" width="500px" alt="image"></img>
 
 
     <!-- <textarea style='width: 100%; height: 30px' ng-model='variable'></textarea><br> -->
 
-      <button ng-click="clickMe()">Click me</button>
 
       <script src="/socket.io/socket.io.js"></script>
       <script>
@@ -35,6 +40,8 @@
         IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
           $scope.variable = [];
 
+
+
           $scope.clickMe = function(){
             var tweet = {user: "Lukas", text: "Blue Banana"};
             $scope.variable= [];
@@ -42,11 +49,27 @@
           }
 
           socket.on("tweet", function(tweet){
+            $scope.variable= [];
             $scope.variable.push(tweet.text);
             console.log("from server - tweet from", tweet.user);
             console.log("contents", tweet.text);
+
+            if ($scope.variable == "Blue Banana") {
+              $scope.hash = "malamute";
+            } else if ($scope.variable == "Red Banana") {
+              $scope.hash = "parrot";
+            } else {
+              $scope.hash = "";
+            }
+
+
             $scope.$apply();
           })
+
+
+
+
+
 
 
 
