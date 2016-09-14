@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="vendors/bootstrap.min.css"></link>
 <link rel="stylesheet" href="assets/sheetrock.css"></link>
 
-
 <!-- Scripts -->
 <script type="text/javascript" src="vendors/angular.min.js"></script>
 <!-- <script type="text/javascript" src="scripts/clientApp.js"></script> -->
@@ -16,15 +15,15 @@
 
   </head>
 
-
   <body ng-controller="baseController">
 
     <h1>Hello!</h1>
 
-    This represents the mobile page
+    This represents the mobile page<br>
+
+    <textarea style='width: 100%; height: 30px' ng-model='variable'></textarea><br>
 
       <button ng-click="clickMe()">Click me</button>
-
 
       <script src="/socket.io/socket.io.js"></script>
       <script>
@@ -32,7 +31,7 @@
         var IOT = angular.module('IOT', []);
 
         IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
-          console.log('hello, world!');
+          $scope.variable = "test";
 
           $scope.clickMe = function(){
             var tweet = {user: "Lukas", text: "Blue Banana"};
@@ -40,15 +39,10 @@
           }
 
           socket.on("tweet", function(tweet){
+            $scope.variable = tweet;
             console.log("from server - tweet from", tweet.user);
             console.log("contents", tweet.text);
           })
-
-
-
-
-
-
         }]);
 
         // socket.on("tweet", function(tweet){
