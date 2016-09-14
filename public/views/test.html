@@ -20,8 +20,10 @@
     <h1>Hello!</h1>
 
     This represents the mobile page<br>
+    {{variable}}
 
-    <textarea style='width: 100%; height: 30px' ng-model='variable'></textarea><br>
+
+    <!-- <textarea style='width: 100%; height: 30px' ng-model='variable'></textarea><br> -->
 
       <button ng-click="clickMe()">Click me</button>
 
@@ -31,29 +33,27 @@
         var IOT = angular.module('IOT', []);
 
         IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
-          $scope.variable = "test";
+          $scope.variable = [];
 
           $scope.clickMe = function(){
             var tweet = {user: "Lukas", text: "Blue Banana"};
+            $scope.variable= [];
             socket.emit("tweet", tweet);
           }
 
           socket.on("tweet", function(tweet){
-            $scope.variable = tweet;
+            $scope.variable.push(tweet.text);
             console.log("from server - tweet from", tweet.user);
             console.log("contents", tweet.text);
+            $scope.$apply();
           })
+
+
+
+
         }]);
 
-        // socket.on("tweet", function(tweet){
-        //   console.log("tweet from", tweet.user);
-        //   console.log("contents", tweet.text);
-        // })
 
-        // socket.on('news', function (data) {
-        //  console.log(data);
-        //  socket.emit('my other event', { my: 'yes' });
-        // });
       </script>
   </body>
 </html>
