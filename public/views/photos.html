@@ -1,34 +1,20 @@
 
-<div class="slideshowContainer" width="75%">
-  <img class="mySlides" src="images/1.jpg">
-  <img class="mySlides" src="images/2.jpg" >
-  <img class="mySlides" src="images/3.jpg">
-  <img class="mySlides" src="images/4.jpg" >
-  <img class="mySlides" src="images/5.jpg" >
-  <img class="mySlides" src="images/6.jpg" >
-  <img class="mySlides" src="images/7.jpg" >
-  <img class="mySlides" src="images/8.jpg" >
-  <img class="mySlides" src="images/9.jpg" >
+<!-- <div class="slideshowContainer" width="75%">
+
+</div> -->
+
+
+<div class="w3-content w3-section" style="max-width:500px">
+  <img class="mySlides" src="images/1.jpg" width="100%">
+  <img class="mySlides" src="images/2.jpg" width="100%">
+  <img class="mySlides" src="images/3.jpg" width="100%">
+  <img class="mySlides" src="images/4.jpg" width="100%" >
+  <img class="mySlides" src="images/5.jpg" width="100%">
+  <img class="mySlides" src="images/6.jpg" width="100%">
+  <img class="mySlides" src="images/7.jpg" width="100%">
+  <img class="mySlides" src="images/8.jpg" width="100%">
+  <img class="mySlides" src="images/9.jpg" width="100%">
 </div>
-
-
-<script>
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 4000); // Change image every 2 seconds
-}
-</script>
-
 
 <img src="images/malamute.jpg" width="500px" alt="image"></img>
 
