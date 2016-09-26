@@ -4,7 +4,24 @@ var IOT = angular.module('IOT', []);
 IOT.controller('baseController', ['$scope', '$http', function($scope, $http){
   $scope.viewer = "greeting";
 
-  $scope.hi = "washing machine"
+  $scope.hi = "washing machine";
+
+$scope.time = function(){
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+};
+
+  $scope.checkTime = function(i) {
+     if (i < 10) {i = "0" + i;}
+    return i;
+  };
 
 $http({
   method: 'GET',
