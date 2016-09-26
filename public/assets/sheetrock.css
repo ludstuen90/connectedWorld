@@ -1,5 +1,5 @@
 h1 {
-  color: black;
+  color: white;
   font-size:70px;
 }
 
@@ -11,4 +11,11 @@ h3 {
   width:75%;
   margin:0 10% 0 10%;
   /*image-orientation: from-image;*/
+}
+
+
+body {
+  color:white;
+  background-color:black
+
 }
