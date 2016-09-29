@@ -7,15 +7,23 @@ h3 {
   font-size: 30px;
 }
 
+#greeting{
+  font-size:50px;
+   text-align: center;
+}
+
+#clock{
+  text-align: center;
+  font-size:200px;
+}
+
 .slideshowContainer {
   width:75%;
   margin:0 10% 0 10%;
   /*image-orientation: from-image;*/
 }
 
-
 body {
   color:white;
   background-color:black
-
 }

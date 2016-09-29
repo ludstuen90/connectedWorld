@@ -4,8 +4,6 @@ var IOT = angular.module('IOT', []);
 IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
   $scope.viewer = "greeting";
 
-  $scope.hi = "washing machine";
-
    $scope.startTime = function() {
       var today = new Date();
       var h = today.getHours();
@@ -13,7 +11,7 @@ IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope
       var s = today.getSeconds();
       m = $scope.checkTime(m);
       s = $scope.checkTime(s);
-      $scope.txt =
+      $scope.time =
       h + ":" + m + ":" + s;
       var t = $timeout(function(){
         $scope.startTime();
