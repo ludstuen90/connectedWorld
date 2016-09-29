@@ -4,6 +4,7 @@ var IOT = angular.module('IOT', []);
 IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
   $scope.viewer = "greeting";
 
+
    $scope.startTime = function() {
       var today = new Date();
       var h = today.getHours();
@@ -23,6 +24,28 @@ IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope
   };
 
   $scope.startTime();
+
+  $scope.adjustGreeting = function() {
+    $scope.greeting = $scope.time.charAt(0);
+    if ($scope.time.charAt(1) == ":") {
+      console.log("Short time");
+      $scope.greeting = "morning";
+    } else {
+      $scope.slice = $scope.time.slice(0,2);
+      if ($scope.slice < 17) {
+        $scope.greeting = "afternoon";
+      } else if ($scope.slice < 21) {
+        $scope.greeting = "evening";
+      } else {
+        $scope.greeting = "night";
+      }
+      console.log($scope.slice);
+
+      console.log("Long time");
+    }
+  };
+
+  $scope.adjustGreeting();
 
 
 
