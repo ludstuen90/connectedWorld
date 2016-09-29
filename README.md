@@ -10,4 +10,6 @@ as the computer, and they can use a virtual "remote" on their smartphone to dire
 
 <b>How to use this app:</b>
 -: Set the computer you wish to use as a display to access the "/display" portion of this application. If you're on a local network, it would be the IP address of the server, followed by the port number, followed by the page location. EG: http://10.0.0.213:3000/display
+
+
 -: Point the cell phone, tablet, or other mobile device you'll use as the "remote" to the base address. In the example above, this would be : http://10.0.0.213:3000/ Then, you can use the remote to change the display of your information center.
