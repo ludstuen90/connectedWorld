@@ -18,5 +18,9 @@
   <body ng-controller="baseController">
       <div ng-include src="viewer"></div>
 
+      <!-- All content is housed on separate HTML pages. Angular manipualtes which
+      page is displayed. Pages change whenever a message is broadcast via socket.io from
+    a mobile device.  -->
+
   </body>
 </html>
