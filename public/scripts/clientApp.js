@@ -1,10 +1,12 @@
 var socket = io();
 var IOT = angular.module('IOT', []);
 
+
+//This controller contains the information necessary to manipulate the main display.
 IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
   $scope.viewer = "greeting";
 
-
+// The functionbelow obtains the current time.
    $scope.startTime = function() {
       var today = new Date();
       var h = today.getHours();
@@ -18,12 +20,19 @@ IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope
         $scope.startTime();
       }, 500);
   };
+
+  //This checks to see what time of day it is. Note - that because the
+  // time is displayed in 24 hour format, the system is easily able to detect
+  // whether it is morning, evening or night using a simple for loop.
   $scope.checkTime= function(i) {
       if (i < 10) {i = "0" + i;}
       return i;
   };
 
   $scope.startTime();
+
+  //When the system starts, it displays "Good XXXX, NAME". This function adjusts
+  // the statement to indicate morning, afternoon, evening or night.
 
   $scope.adjustGreeting = function() {
     $scope.greeting = $scope.time.charAt(0);
@@ -48,7 +57,7 @@ IOT.controller('baseController', ['$scope', '$http', '$timeout', function($scope
   $scope.adjustGreeting();
 
 
-
+// Obtain local weather conditions
 $http({
   method: 'GET',
   url: 'http://api.wunderground.com/api/ff82541ce72353e5/conditions/q/MN/Minneapolis.json'
@@ -60,7 +69,7 @@ $http({
   $scope.lastUpdated = $scope.currentObservations.observation_time;
   // console.log($scope.currentObservations);
 }).then(function(){
-
+//Obtain forecast data
         $http({
           method: 'GET',
           url: 'http://api.wunderground.com/api/ff82541ce72353e5/forecast10day/q/MN/Minneapolis.json'
@@ -70,6 +79,10 @@ $http({
           // console.log($scope.forecastArray);
         });
   });
+
+  //The display is updated via a socket.io message broadcast from the mobile device.
+  // This function adjusts the display according to which Socket.IO message comes across from
+// the mobile device.
 
   socket.on("tweet", function(tweet){
     $scope.variable= [];
@@ -90,6 +103,9 @@ $http({
   });
 
 }]);
+
+//This controller captures information on the mobile device. IE: This is the
+// controller from where messages to change the display are broadcast.
 
 IOT.controller('secondController', ['$scope', '$http', function($scope, $http){
   $scope.variable = [];
