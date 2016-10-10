@@ -3,7 +3,7 @@
 This is an app designed to put old technology to work. If you have an old computer monitor around your house, this app is for you.
 
 Rather than having the old monitor sit un-used in your basement, you can place it in a common area of the house,
- and have it run this app via a rasberry pi.
+ and have it run this app via a Rasberry Pi.
 
  Then, viola. You have a centralized information center for your home.
 
