@@ -20,5 +20,4 @@ their smartphones. In other words, users smart phones become a sort of 'remote' 
 
 (Pro tip: For simplicity, you can set the Rasberry Pi to have a static IP address. This the IP address of the display will be the same each time. After this, you can program the Rasberry Pi to automatically load this 'display' page from start up)
 
-
 -: Next, point the cell phone, tablet, or other mobile device you'll use as the "remote" to the base address. In the example above, this would be : http://10.0.0.213:3000/ Then, you can use the remote to change the display of your information center.
